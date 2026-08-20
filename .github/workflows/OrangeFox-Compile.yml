@@ -54,8 +54,10 @@ jobs:
       run: |
         mkdir -p ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
+        
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
+        git config --global extraheader "AUTHORIZATION: basic $(echo -n x-access-token:${{ secrets.GITHUB_TOKEN }} | base64)"
         
         repo init -u https://github.com/OrangeFoxRecovery/Manifest.git -b fox_${{ inputs.MANIFEST_BRANCH }} --depth=1 --no-repo-verify
         repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j$(nproc --all)
