@@ -56,11 +56,15 @@ jobs:
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
-        git config --global http.sslVerify false
         
-        PYTHONHTTPSVERIFY=0 repo init -u https://gitlab.com/OrangeFox/Recovery/Manifest.git -b fox_${{ inputs.MANIFEST_BRANCH }} --depth=1 --no-repo-verify
+        # Clone manifest manually to bypass repo init gitlab authentication locks
+        mkdir -p .repo/manifests
+        git clone https://gitlab.com/OrangeFox/pub/manifest.git .repo/manifests/ -b fox_${{ inputs.MANIFEST_BRANCH }} || git clone https://gitlab.com/OrangeFox/Recovery/Manifest.git .repo/manifests/ -b fox_${{ inputs.MANIFEST_BRANCH }}
+        cp .repo/manifests/default.xml .repo/manifest.xml 2>/dev/null || cp .repo/manifests/fox_${{ inputs.MANIFEST_BRANCH }}.xml .repo/manifest.xml
+        
+        # Initialize repo pointing to local directory structure
+        repo init -u ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}/.repo/manifests -b fox_${{ inputs.MANIFEST_BRANCH }} --no-repo-verify
         repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j$(nproc --all)
-
 
     - name: Clone Device Tree
       run: |
