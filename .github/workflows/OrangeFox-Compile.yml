@@ -108,15 +108,15 @@ jobs:
         fi
         echo "DEVICE_TREE_URL=${DEVICE_TREE_URL}" >> $GITHUB_ENV
 
-    - name: Upload to Release
-      uses: softprops/action-gh-release@v2
-      with:
+        - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
         files: |
-          OrangeFox/fox_*/**/OrangeFox*.img
-          OrangeFox/fox_*/**/OrangeFox*.zip
-          OrangeFox/fox_*/**/vendor_boot.img
+          **/*.img
+          **/*.zip
         name: OrangeFox Recovery for ${{ inputs.DEVICE_NAME }}
         tag_name: "v1.0-${{ github.run_id }}"
         body: |
           ## OrangeFox Recovery Build - Unofficial
           Build: fox_${{ inputs.MANIFEST_BRANCH }}
+
