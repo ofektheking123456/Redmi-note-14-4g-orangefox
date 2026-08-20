@@ -1,5 +1,5 @@
 PRODUCT_MAKEFILES := \
-    device/xiaomi/tanzanite/omni_tanzanite.mk
+    $(LOCAL_DIR)/omni_tanzanite.mk
 
 COMMON_LUNCH_CHOICES := \
     omni_tanzanite-eng \
