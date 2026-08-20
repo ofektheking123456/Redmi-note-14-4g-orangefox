@@ -10,7 +10,7 @@ on:
       MANIFEST_BRANCH:
         description: 'OrangeFox Manifest Branch'
         required: true
-        default: 'fox_12.1'
+        default: '12.1'
       DEVICE_TREE_URL:
         description: 'Device Tree URL'
         required: true
@@ -58,7 +58,7 @@ jobs:
         git config --global user.email "actions@github.com"
         git config --global url."https://github.com/".insteadOf git://github.com/
         git config --global credential.helper store
-        repo init -u https://github.com/OrangeFoxRecovery/Manifest.git -b ${{ inputs.MANIFEST_BRANCH }} --no-repo-verify
+        repo init -u https://github.com/OrangeFoxRecovery/Manifest.git -b fox_${{ inputs.MANIFEST_BRANCH }} --no-repo-verify
         repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j$(nproc --all)
 
     - name: Clone Device Tree
