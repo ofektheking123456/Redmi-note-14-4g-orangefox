@@ -10,7 +10,7 @@ on:
       MANIFEST_BRANCH:
         description: 'OrangeFox Manifest Branch'
         required: true
-        default: '12.1'
+        default: 'fox_12.1'
       DEVICE_TREE_URL:
         description: 'Device Tree URL'
         required: true
