@@ -20,7 +20,7 @@ on:
       DEVICE_TREE:
         description: 'OrangeFox Device Tree'
         required: true
-        default: 'https://github.com/DVWorkspaces/device_xiaomi_tanzanite_recovery'
+        default: 'https://github.com/ofektheking123456/Redmi-note-14-4g-orangefox'
       DEVICE_TREE_BRANCH:
         description: 'OrangeFox Device Tree Branch'
         required: true
