@@ -57,8 +57,10 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git config --global url."https://gitlab.com/".insteadOf git@gitlab.com:
-        repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_${{ inputs.MANIFEST_BRANCH }} --depth=1 --no-repo-verify
+        git config --global url."https://github.com/".insteadOf git://github.com/
+        repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_12.1 --depth=1 --no-repo-verify
         repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j$(nproc --all)
+
 
 
     - name: Clone Device Tree
