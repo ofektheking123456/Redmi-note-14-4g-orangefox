@@ -97,7 +97,6 @@ jobs:
         set -e
         lunch omni_${{ inputs.DEVICE_NAME }}-eng
 
-
     - name: Set Release Properties
       run: |
         echo "BUILD_DATE=$(TZ=Asia/Manila date +%Y%m%d)" >> $GITHUB_ENV
