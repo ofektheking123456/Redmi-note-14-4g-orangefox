@@ -56,12 +56,11 @@ jobs:
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
-        git config --global url."https://gitlab.com/".insteadOf git@gitlab.com:
-        git config --global url."https://github.com/".insteadOf git://github.com/
         
-        # Manually clone the manifest to bypass repo init auth checks
+        # Manually clone manifest from public GitHub mirror without terminal prompt checks
         mkdir -p .repo/manifests
-        git clone https://gitlab.com/OrangeFox/Manifest.git .repo/manifests/ -b fox_${{ inputs.MANIFEST_BRANCH }} --depth=1
+        export GIT_TERMINAL_PROMPT=0
+        git clone https://github.com/OrangeFoxRecovery/Manifest.git .repo/manifests/ -b fox_${{ inputs.MANIFEST_BRANCH }} --depth=1
         cp .repo/manifests/default.xml .repo/manifest.xml
         
         # Run sync directly
