@@ -66,7 +66,7 @@ jobs:
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
-        git config --global extraheader "AUTHORIZATION: basic $(echo -n x-access-token:${{ secrets.GITHUB_TOKEN }} | base64)"
+        git config --global http.extraheader "AUTHORIZATION: basic $(echo -n x-access-token:${{ secrets.GITHUB_TOKEN }} | base64)"
         
         git clone ${{ inputs.DEVICE_TREE_URL }} -b ${{ inputs.DEVICE_TREE_BRANCH }} device/${{ inputs.DEVICE_PATH }}
 
