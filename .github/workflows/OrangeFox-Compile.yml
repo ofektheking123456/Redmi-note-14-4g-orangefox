@@ -56,9 +56,8 @@ jobs:
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
-        git config --global http.userAgent "Mozilla/5.0 (X11; Linux x86_64)"
         
-        repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_${{ inputs.MANIFEST_BRANCH }} --depth=1 --no-repo-verify
+        repo init -u https://gitlab.com/OrangeFox/Recovery/Manifest.git -b fox_${{ inputs.MANIFEST_BRANCH }} --depth=1 --no-repo-verify
         repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j$(nproc --all)
 
     - name: Clone Device Tree
