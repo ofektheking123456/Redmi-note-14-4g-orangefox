@@ -40,3 +40,7 @@ AB_OTA_PARTITIONS += \
     vendor \
     product \
     odm
+
+# Kernel Configuration
+BOARD_KERNEL_IMAGE_NAME := Image.gz
+TARGET_PREBUILT_KERNEL := device/xiaomi/tanzanite/prebuilt/kernel
