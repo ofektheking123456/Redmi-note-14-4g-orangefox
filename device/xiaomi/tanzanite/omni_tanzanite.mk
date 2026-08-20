@@ -5,7 +5,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, vendor/recovery/config/common.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/xiaomi/tanzanite/device.mk)
+$(call inherit-product, $(LOCAL_DIR)/device.mk)
 
 PRODUCT_NAME := omni_tanzanite
 PRODUCT_DEVICE := tanzanite
