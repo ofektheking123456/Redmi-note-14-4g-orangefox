@@ -24,3 +24,11 @@ BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 # OrangeFox Build Flags
 ALLOW_MISSING_DEPENDENCIES := true
 TW_THEME := portrait_hdpi
+
+# Brightness Configuration
+TW_MAX_BRIGHTNESS := 2047
+TW_DEFAULT_BRIGHTNESS := 1200
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+
+# OrangeFox Extra Flags
+AB_OTA_UPDATER := true
