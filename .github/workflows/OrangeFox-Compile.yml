@@ -77,11 +77,17 @@ jobs:
     - name: Building OrangeFox
       run: |
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
-        set +e
+        
+        # Load environment & targets
         source build/envsetup.sh
-        set -e
-        lunch omni_${{ inputs.DEVICE_NAME }}-eng || lunch omni_${{ inputs.DEVICE_NAME }}-userdebug
-        mka recoveryimage -j$(nproc --all)
+        export ALLOW_MISSING_DEPENDENCIES=true
+        export LC_ALL="C"
+        
+        # Choose target lunch product
+        lunch ${{ inputs.MAKEFILE_NAME }}_${{ inputs.DEVICE_NAME }}-eng || lunch ${{ inputs.MAKEFILE_NAME }}_${{ inputs.DEVICE_NAME }}-userdebug
+        
+        # Compile OrangeFox recovery image and zip
+        mka recoveryimage -j$(nproc --all) || mka bootimage -j$(nproc --all)
 
     - name: Find Compiled Outputs
       run: |
