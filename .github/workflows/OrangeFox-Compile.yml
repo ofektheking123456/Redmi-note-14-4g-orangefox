@@ -64,16 +64,17 @@ jobs:
     - name: Clone Device Tree
       run: |
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
-        
+        git clone https://gitlab.com/OrangeFox/vendor/fox.git vendor/fox -b fox_12.1
+
         # Determine target path safely
         TARGET_DIR="${{ inputs.DEVICE_PATH }}"
         [[ "$TARGET_DIR" != device/* ]] && TARGET_DIR="device/$TARGET_DIR"
-        
+
         # Copy device tree files from current repository workspace
         mkdir -p "$TARGET_DIR"
-        cp -r ${{ github.workspace }}/* "$TARGET_DIR"/ 2>/dev/null || true
+        cp -r ${{ github.workspace }}/* "$TARGET_DIR/" 2>/dev/null || true
         rm -rf "$TARGET_DIR/OrangeFox" "$TARGET_DIR/.github"
-
+        
     - name: Building OrangeFox
       run: |
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
