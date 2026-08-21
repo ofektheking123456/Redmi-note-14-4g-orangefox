@@ -44,3 +44,12 @@ AB_OTA_PARTITIONS += \
 # Kernel Configuration
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 TARGET_PREBUILT_KERNEL := device/xiaomi/tanzanite/prebuilt/kernel
+
+# --- OrangeFox Recovery Build Flags ---
+ALLOW_MISSING_DEPENDENCIES := true
+TARGET_RECOVERY_DEVICE := tanzanite
+FOX_RECOVERY_INSTALL_PARTITION := /dev/block/bootdevice/by-name/recovery
+FOX_REPLACE_BUSYBOX_PS := 1
+FOX_USE_NANO_EDITOR := 1
+FOX_VERSION := "R11.1"
+FOX_BUILD_TYPE := "Unofficial"
