@@ -78,15 +78,18 @@ jobs:
       run: |
         cd ${{ github.workspace }}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
         
-        # Load environment & targets
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         export LC_ALL="C"
         
-        # Choose target lunch product
-        lunch ${{ inputs.MAKEFILE_NAME }}_${{ inputs.DEVICE_NAME }}-eng || lunch ${{ inputs.MAKEFILE_NAME }}_${{ inputs.DEVICE_NAME }}-userdebug
+        # Determine prefix (defaults to 'omni' if input is blank)
+        PREFIX="${{ inputs.MAKEFILE_NAME }}"
+        [ -z "$PREFIX" ] && PREFIX="omni"
         
-        # Compile OrangeFox recovery image and zip
+        # Lunch target product
+        lunch ${PREFIX}_${{ inputs.DEVICE_NAME }}-eng || lunch ${PREFIX}_${{ inputs.DEVICE_NAME }}-userdebug
+        
+        # Compile OrangeFox recovery
         mka recoveryimage -j$(nproc --all) || mka bootimage -j$(nproc --all)
 
     - name: Find Compiled Outputs
